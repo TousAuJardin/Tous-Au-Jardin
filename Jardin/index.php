@@ -42,7 +42,7 @@
                         <h3>Réserver </h3>
                         <hr class="intro-divider">
                         
-                        <form class="form-inline" method="POST" action="jscript.php" >
+                        <form class="form-inline" method="POST" action="carte_jardin.php" >
                             <div class="form-group">
                               <div class="input-group">
                                 <input type="text" class="form-control" id="exampleInputAmount" placeholder="Lieux">

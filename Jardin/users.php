@@ -294,10 +294,34 @@ switch ($action) {
      {
          
          $_SESSION['email'] = $email; 
+               
+         $jardinier = $pdo-> getInfoJardinier($infoUser['id']);
+          $loueur = $pdo-> getInfoLoueur($infoUser['id']);
+          
+        if($jardinier != null )
+        {
+            $_SESSION['type_compte'] = 'jardinier'; 
+            $type_compte="jardinier";
+        }
+        else if ($loueur != null)
+        {
+            $_SESSION['type_compte'] = 'loueur';   
+            $type_compte="loueur";
+        }
+        
+         if($type_compte=="loueur"){
+             $loueur=$pdo->getInfoLoueur($infoUser['id']);
+             $_SESSION['id_loueur']=$loueur['id_loueur'];
+             include './index.php';
+         }
+         if($type_compte=="jardinier"){
+             $jardinier=$pdo->getInfoJardinier($infoUser['id']);
+             $_SESSION['id_jardinier']=$jardinier['id_jardinier'];
+             include './gestion_jardinier.php';
+         }
          
-         
-         
-         include './index.php';
+          
+
          
          
      }

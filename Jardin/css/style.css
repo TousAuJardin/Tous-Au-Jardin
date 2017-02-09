@@ -20,6 +20,9 @@ h6 {
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
 }
+#myTab{
+    margin-top: 60px;
+}
 
 .topnav {
     font-size: 14px; 

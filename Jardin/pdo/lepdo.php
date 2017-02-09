@@ -29,7 +29,6 @@ class lepdo{
 			lepdo::$monPdoJardin= new lepdo();
 		}
 		return lepdo::$monPdoJardin;  
-
                 }
                 
                 
@@ -160,6 +159,22 @@ class lepdo{
             $ligne = $req->fetch();
             return $ligne;
         }
+        
+        
+        /**
+         * @author Firat
+         * @todo Retourne les donnéés de chaque terrain
+         * @return type
+         */
+        public function getTerrains()
+        {
+             $req="select * from terrain";
+
+             $resultat = lepdo::$monPdo->query($req);
+            
+            $leslignes = $resultat->fetchAll();
+            return $leslignes;
+        }
         /**
          * @todo Recupère les données d'un User
          * @param $email
@@ -266,4 +281,55 @@ class lepdo{
            
             $req->execute();
         }
-}
+
+        /**
+         * @todo Fonction qui renvoie les terrains occup�s par le jardinier en param�tre
+         * @author Sunny
+         * @param type $id_jardinier
+         */
+        public function chercherLesOccupations($id_jardinier){
+            $req= lepdo::$monPdo->prepare("SELECT id_terrain FROM occupation WHERE id_jardinier=:id_jardinier");
+            $req->bindParam(':id_jardinier', $id_jardinier, PDO::PARAM_STR);
+            $req->execute();
+            $lesOccupations='';
+            while($donnees=$req->fetch()){
+                $lesOccupations[]=$donnees['id_terrain'];
+            }
+            return $lesOccupations;
+        }
+
+        /**
+         * @todo Fonction qui renvoie les evenements li�s au terrain en param�tre
+         * @author Sunny
+         * @param type $id_terrain
+         */
+        public function chercherLesEvenements($id_terrain){
+            $req= lepdo::$monPdo->prepare("SELECT * FROM evenement JOIN terrain ON terrain=id_terrain WHERE terrain=:id_terrain");
+            $req->bindParam(':id_terrain', $id_terrain, PDO::PARAM_STR);
+            $req->execute();
+            $unEvenement='';
+            $lesEvenements='';
+            while($donnees=$req->fetch()){
+                unset($unEvenement);
+                $unEvenement['titre']=$donnees['titre'];
+                $unEvenement['date']=$donnees['date'];
+                $unEvenement['description']=$donnees['description'];
+                $unEvenement['nom_terrain']=$donnees['nom_terrain'];
+                $lesEvenements[]=$unEvenement;
+            }
+            return $lesEvenements;
+        }
+
+/**
+         * @todo Fonction qui renvoie les informations du terrain en param�tre
+         * @author Sunny
+         * @param type $id_terrain
+         */
+        public function getInfoTerrain($id_terrain){
+            $req= lepdo::$monPdo->prepare("SELECT * FROM terrain WHERE id_terrain=:id_terrain");
+            $req->bindParam(':id_terrain', $id_terrain, PDO::PARAM_STR);
+            $req->execute();
+            $ligne=$req->fetch();
+            return $ligne;
+        }
+}		
