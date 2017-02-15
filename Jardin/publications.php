@@ -1,11 +1,4 @@
 <?php
-require 'pdo/ConnexionPDObis.class.php';
-require 'pdo/News.class.php';
-require 'pdo/NewsManagerPDO.class.php';
-include('partials/head.html');
-include('partials/navbar.php');
-$db = ConnexionPDObis::getMysqlConnexionWithPDO();
-$manager = new NewsManagerPDO($db);
 
 if (isset($_GET['modifier']))
 {

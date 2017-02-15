@@ -3,15 +3,12 @@ require 'pdo/ConnexionPDObis.class.php';
 require 'pdo/News.class.php';
 require 'pdo/NewsManagerPDO.class.php';
 
-include('partials/head.html');
-include('partials/navbar.php');
 $db = ConnexionPDObis::getMysqlConnexionWithPDO();
 $manager = new NewsManagerPDO($db);
 
 ?>
 	<div class= "container" id = "PageProfil">
-    <a class="btn btn-default" href="publications.php" role="button">Espace publications</a>
-	<a class="btn btn-default" href="listeterrains.php" role="button">Liste des terrains</a>
+   
 <?php
 if (isset($_GET['id_news']))
 {
@@ -43,5 +40,3 @@ else
 }
 ?>
 </div>
-  </body>
-</html>

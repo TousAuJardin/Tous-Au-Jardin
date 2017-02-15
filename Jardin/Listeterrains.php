@@ -1,7 +1,4 @@
-<?php
-include ('partials/head.html');
-include ('partials/navbar.php');
-?>
+
 <div style="Listeterrain">
 <div class="container">
     <div class="card">

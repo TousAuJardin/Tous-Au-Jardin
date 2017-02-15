@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-    <?php include('./partials/head.html'); ?>
-
+    <?php 
+    include('./partials/head.html');
+    ?>
+  
 <body>
     
     <?php include('./partials/navbar.php');
@@ -45,7 +47,7 @@
                         <form class="form-inline" method="POST" action="carte_jardin.php" >
                             <div class="form-group">
                               <div class="input-group">
-                                <input type="text" class="form-control" id="exampleInputAmount" placeholder="Lieux">
+                                <input type="text" class="form-control" id="ville" placeholder="Lieux">
                                 <div class="input-group-addon"> 
                                     <span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
                               </div>
@@ -63,13 +65,21 @@
     </div>
     <!-- /.intro-header -->
 
-   
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    
+    <script src="js/jquery-ui.min.js"></script>
+ <script>
+  $(function() {
+    $( "#ville" ).autocomplete({
+      source: 'pdo/search.php'
+    });
+  });
+  </script>
 
 </body>
 
